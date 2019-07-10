@@ -2,6 +2,7 @@ package com.main;
 
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import static java.lang.System.out;
 
@@ -16,35 +17,37 @@ public class BasicLevel {
 
     private String mPName = "Jarod"; //Need to get the public string form Tutorial. This is temp fix.
 
-    private step s1 = new step();
-    private step s2 = new step();
-    private step s3 = new step();
 
     public void start() {
+
+        Helpers.print(
+                "this is the all ammmasing test of this function",
+                "this is the second line of text");
+
         out.println("You have entered");
-        out.println("Monster City");
+        out.println("Daemon City Name");
 
+
+        checkImpute();
         // Find a way to wait a about of time
-
-       s1.map.put("s2", this::s2Action);
-        s1.map.put("s3", this::s3Action);
-
     }
 
-    public void s1Action() {
-
-    }
-
-    public void s2Action() {
-
-    }
-
-    public void s3Action() {
-
-    }
+//    public void textSlowDown(String... lines) {
+//        for (String line: lines) {
+//            for (char c: line.toCharArray()) {
+//                out.print(c);
+//                out.flush();
+//                if (c != ' ') {
+//                    myWait(100);
+//                }
+//            }
+//            out.println();
+//        }
+//
+//    }
 
     private void checkImpute() {
-        /*
+
         String impute = scan.nextLine();
 
         if (impute.equals("next")) {
@@ -79,9 +82,17 @@ public class BasicLevel {
         else {
             out.println("Not valid impute.");
         }
-    */
-    }
 
+    }
+/*
+    private void myWait(long millis) {
+        try {
+            Thread.sleep(millis);
+        }
+        catch (Exception e) { }
+
+    }
+*/
     private void conversation() {
         if (comsOver == false) {
 
@@ -90,9 +101,11 @@ public class BasicLevel {
 
             if (impute.equals("Yes")) {
                 out.println("What is you name stranger?");
-                //sleep 3 sec
-                out.println("Well hello")(mPName)(",and welcome to The Monster Cite of ________.");
-                out.println(mPName);
+
+                //myWait(3000);
+
+                out.printf("Well hello %s,and welcome to The Monster Cite of ________.\n", mPName);
+
                 out.println(",and welcome to The Monster Cite of ________.");
                 out.println("There will be more but this is good for now.");
                 comsOver = true;
