@@ -1,6 +1,7 @@
 package com.main;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static java.lang.System.out;
 
@@ -54,7 +55,12 @@ public final class Helpers {
         }
     }
 
-//    public static void ScanLine(){
-//         = scan.nextLine();
-//    }
+    public static String getInput(){
+        return scan.nextLine();
+    }
+
+    public static String randomString(String[] array){
+        return array[ThreadLocalRandom.current().nextInt(0, array.length - 1)];
+
+    }
 }
