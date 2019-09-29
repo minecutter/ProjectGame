@@ -36,7 +36,7 @@ public class TutorialMap {
             case "back":
 
                 print("You turn around and all you see is a black nothingness.");
-                print("You look back the other way and notes that the room is gon.");
+                print("You look back the other way and notes that the room is gone.");
                 print("It feels like the nothingness is closing in on you trying to crush you.");
                 print("You blink you eyes and the room is suddenly back as if you had never left.");
                 araPrint("Why are you just standing?");
@@ -44,7 +44,13 @@ public class TutorialMap {
 
                 break;
             case "left":
-                //code
+
+                print("You walk to the right towards Ara.");
+                print("Ara seams slightly surprised by this.");
+                araPrint("There is nothing over here you know.");
+                araPrint("So go somewhere else.");
+
+
                 break;
             case "right":
 
@@ -56,7 +62,7 @@ public class TutorialMap {
 
                     switch (h.menu("yes", "no")) {
                         case "yes":
-                            print("You have ubtand unreadable note");
+                            print("You have obtained unreadable note");
                             print("You find a note inside.");
                             print("It is whiten in a language you do not understand");
 
@@ -91,9 +97,7 @@ public class TutorialMap {
 
     private void roomB1(){
 
-
-
-
+        print("In the next room you see walls to the right and left of you, and in front of you is another large door.");
 
         switch (h.menu("forward","back","left","right","search"))
         {
@@ -103,13 +107,30 @@ public class TutorialMap {
 
                 break;
             case "back":
-                //code
+
+                print("You turn around and you see Ara standing in the doorway.");
+                print("You think she is not going to let you pass.");
+
                 break;
             case "left":
-                //code
+
+                print("You look to the left and you see a wall.");
+                print("");
+
+                h.myWait(300);
+
+                print("That all that is there.");
+
                 break;
             case "right":
-                //code
+
+                print("You look to the right and you see a wall.");
+                print("");
+
+                h.myWait(300);
+
+                print("That all that is there.");
+
                 break;
             case "search":
 
@@ -128,22 +149,39 @@ public class TutorialMap {
 
     private void roomC1(){
 
-
-
+        print("As you walk into the next room you see a walls on both the right and in front of you.");
+        print("To the left is a large white hole.");
 
         switch (h.menu("forward","back","left","right","search"))
         {
             case "forward":
-                //code
+
+                print("You look in front of you and you see a wall.");
+                print("");
+
+                h.myWait(300);
+
+                print("That all that is there.");
+
                 break;
             case "back":
-                //code
+
+                print("You turn around and you see Ara standing in the doorway.");
+                print("You think she is not going to let you pass.");
+
                 break;
             case "left":
-                //code
+
+                print("You look to the right and you see a wall.");
+                print("");
+
+                h.myWait(300);
+
+                print("That all that is there.");
+
                 break;
             case "right":
-                //code
+
                 break;
             case "search":
 

@@ -11,22 +11,26 @@ import java.util.*;
 public class Tutorial {
 
 
+    Helpers h = new Helpers();
+    TutorialMap tutorialMap = new TutorialMap();
+
     protected void print(String... lines) {
-        Helpers.print(lines);
+        h.print(lines);
     }
     protected void araPrint(String... lines) {
-        Helpers.araPrint(lines);
+        h.araPrint(lines);
     }
 
-    public void start(Player p, Ara ara, Combat c, Tutorial t, CombatT ct, TutorialMap tm) {
+    public void start(Player player, Ara ara, Combat combat) {
 
+//      how to color text
         System.out.println("\033[31mRed\033[32m, Green\033[33m, Yellow\033[34m, Blue\033[0m");
 
         araPrint("This is it intro.");
         print("this is the instructions.");
         print("do you understand?");
 
-        String input = Helpers.menu("yes","no");
+        String input = h.menu("yes","no");
             if (input.equals("yes")) {
                 print("Good for you.");
 
@@ -37,7 +41,7 @@ public class Tutorial {
         print("Lets start with your name.");
         print("So just type it.");
 
-        p.Name = Helpers.getInput();
+        player.Name = h.getInput();
 
         Random r = new Random();
 
@@ -57,12 +61,12 @@ public class Tutorial {
                 print("Is this the name your good with.");
             }
 
-            print(p.Name);
+            print(player.Name);
 
-            input = Helpers.menu("yes", "no");
+            input = h.menu("yes", "no");
             if (input.equals("yes")) {
                 print("Ok then");
-                print(p.Name);
+                print(player.Name);
                 break;
             } else if (input.equals("no")) {
                 //print(Helpers.randomString(snarkyRemarks));  //gives random string
@@ -74,8 +78,8 @@ public class Tutorial {
                     i = 4;
                 }
 
-//                i %= snarkyRemarks.length; //makes the array go one afert the other then loop
-                p.Name = Helpers.getInput();
+//                i %= snarkyRemarks.length; //makes the array go one after the other in a loop
+                player.Name = h.getInput();
             }
 
         }
@@ -83,13 +87,13 @@ public class Tutorial {
         print("Ok now that we have that out of the way lets move on to fighting.");
 
         //adds Sword to inventory
-        p.inventory.add(new BasicSword());
+        player.inventory.add(new BasicSword());
 
-        c.start(p,ara);
+        combat.start(player,ara);
 
         print("Now that you have learned how to fight you now need to learn how to move around.");
 
-        tm.roomA1();
+        tutorialMap.roomA1();
 
     }
 

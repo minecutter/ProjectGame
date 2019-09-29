@@ -9,18 +9,16 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Player p = new Player("sans");
-        Tutorial t = new Tutorial();
+        Player player = new Player("sans");
+        Tutorial tutorial = new Tutorial();
         Ara ara = new Ara("Ara");
-        Combat c = new Combat();
-        CombatT ct = new CombatT();
-        TutorialMap tm = new TutorialMap();
+        Combat combat = new Combat();
 
         ara.Name = "Ara";
 
 
 
-        t.start(p, ara, c, t, ct, tm);
+        tutorial.start(player, ara, combat);
 
 
 
