@@ -9,7 +9,7 @@ public class Entity {
     public int hp;
     public int xp;
     public float armor;
-    public int dogeChans;
+    public String fightStartText;
 
     public Entity(String name){
         String Name = name;
