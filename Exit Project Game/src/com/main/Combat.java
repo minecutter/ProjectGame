@@ -2,6 +2,7 @@ package com.main;
 
 import com.main.Entitys.Player;
 import com.main.Items.Magic.Magic;
+import com.main.Items.Magic.MagicEffect;
 import com.main.Items.Swords.Swords;
 import com.main.Tutorial;
 
@@ -27,17 +28,24 @@ public class Combat {
             araPrint("What are you expecting a deeper explanation you will literally just attack the target with your sword.");
             araPrint("The second command for when you are in combat is MAGIC.");
             araPrint("When you use this command you will aces your magic list and have to pick the magic you want to use.");
+            araPrint("");
+            tutorialLevel = false;
 
         }
 
-        switch (h.menu("attack", "magic")){
+        switch (h.menu("attack", "magic", "info")){
             case "attack":
-                attack();
+                attack(player, enemy);
 
                 break;
 
             case "magic":
-                magic();
+                magic(player, enemy);
+
+                break;
+
+            case "info":
+                info(enemy);
 
                 break;
         }
@@ -45,14 +53,25 @@ public class Combat {
 
     }
 
-    private void attack(){
+    private void attack(Player player, Entity enemy){
         Swords s = new Swords();
         print("You attack your enemy dealing" + s.damage + "damage");
 
     }
 
-    private void magic(){
-        Magic m = new Magic();
+    private void magic(Player player, Entity enemy){
+        Magic m = player.inventory.menu(Magic.class);
+        if (m.effect == MagicEffect.ENEMY){
+
+        }
+        else if(m.effect == MagicEffect.SELF){
+
+        }
+
+    }
+
+    private void info(Entity enemy){
+
 
     }
 

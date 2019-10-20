@@ -7,6 +7,7 @@ import java.applet.Applet;
 import java.awt.Font;
 import java.awt.Graphics;
 
+import static java.lang.System.in;
 import static java.lang.System.out;
 
 public final class Helpers {
@@ -63,22 +64,57 @@ public final class Helpers {
 
     }
 
-    public static String menu(String... items) {
+//    public static String menu(String... items) {
+//
+//        for (String item: items) {
+//            out.println("- " + item);
+//
+//        }
+//
+//        while (true){
+//            String input = scan.nextLine();
+//
+//            if (Arrays.asList(items).contains(input)){
+//                return input;
+//            }
+//            else {
+//                print("that command won't work dummy");
+//            }
+//        }
+//    }
 
-        for (String item: items) {
-            out.println("- " + item);
+    //  public <T extends Item> List<T> getItemsOfType(Class<T> fType) {
 
+    public static <T> T menu(T... items) {
+
+        for (int i = 1; i <= items.length; i++){
+            out.println(i + ": " + items[i-1].toString());
         }
 
         while (true){
             String input = scan.nextLine();
 
-            if (Arrays.asList(items).contains(input)){
-                return input;
+            try {
+                int index = Integer.parseInt(input);
+
+                if (index <= 0 || index > items.length){
+                    araPrint("That's not a good number dummy.");
+                    continue;
+                }
+
+                return items[index - 1];
+
+            } catch (NumberFormatException e){
+                for (int i = 0; i < items.length; i++){
+                    if (items[i].toString().equals(input)){
+                        return items[i];
+                    }
+                }
+
+                araPrint("That's nothing dummy.");
+
             }
-            else {
-                print("that command won't work dummy");
-            }
+
         }
     }
 

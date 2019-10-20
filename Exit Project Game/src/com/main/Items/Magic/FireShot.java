@@ -4,7 +4,7 @@ public class FireShot extends Magic {
 
     public FireShot(){
         mpCost = 30;
-        effect = "burn";
+        effect = MagicEffect.ENEMY;
         effectNumber = 15;
 
     }
