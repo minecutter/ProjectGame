@@ -33,45 +33,54 @@ public class Combat {
 
         }
 
-        switch (h.menu("attack", "magic", "info")){
-            case "attack":
-                attack(player, enemy);
+        while (enemy.hp > 0) {
+            switch (h.menu("attack", "magic", "info")) {
+                case "attack":
+                    attack(player, enemy);
 
-                break;
+                    break;
 
-            case "magic":
-                magic(player, enemy);
+                case "magic":
+                    magic(player, enemy);
 
-                break;
+                    break;
 
-            case "info":
-                info(enemy);
+                case "info":
+                    info(enemy);
 
-                break;
+                    break;
+            }
         }
-
 
     }
 
     private void attack(Player player, Entity enemy){
-        Swords s = new Swords();
-        print("You attack your enemy dealing" + s.damage + "damage");
+        Swords s = player.inventory.menu(Swords.class);
+
+        float damage = s.damage * enemy.armor;
+
+        enemy.hp = enemy.hp - damage;
+
+        print("You attack your enemy dealing" + (int)damage + "damage");
 
     }
 
     private void magic(Player player, Entity enemy){
         Magic m = player.inventory.menu(Magic.class);
         if (m.effect == MagicEffect.ENEMY){
+            enemy.hp = enemy.hp - m.damage;
+
+            print("");
 
         }
         else if(m.effect == MagicEffect.SELF){
-
+            player.hp = player.hp + m.damage;
         }
 
     }
 
     private void info(Entity enemy){
-
+        araPrint(enemy.infoText);
 
     }
 

@@ -6,7 +6,7 @@ public class Level1 extends Level {
 
         rooms = new Room[][]{
             {new Room(/* Empty */), new Room(), new Room(), new Room()},
-            {new Room(WallType.WALL,WallType.WALL, WallType.DOOR, WallType.WALL), new Room(), new Room(), new Room()},
+            {new Room(new Wall(), new Wall(), new Door(), new Wall()), new Room(), new Room(), new Room()},
             {new Room(/* Empty */), new Room(), new Room(), new Room()},
             {new Room(/* Empty */), new Room(), new Room(/* Empty */), new Room(/* Empty */)}
         };
@@ -16,7 +16,10 @@ public class Level1 extends Level {
 
         startRoom = rooms[1][0];
         endRoom = rooms[3][1];
+        currentDirection = Direction.POSY;
         /*POSX = east, NEGX = west, POSY = north, NEGY = south*/
+
+
     }
 
 

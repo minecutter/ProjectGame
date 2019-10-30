@@ -7,22 +7,25 @@ public class Level {
     protected Room previousRoom;
     protected Room startRoom;
     protected Room endRoom;
+    protected Direction currentDirection;
 
-    Room room = new Room();
+
     public void startLevel(){
         // TODO start level
         currentRoom = startRoom;
+        currentRoom.playRoom(currentDirection);
     }
 
-    public void startRoom(){
-        // TODO the first
-    }
+//    public void startRoom(){
+//        // TODO the first
+//        currentRoom.menu(currentDirection);
+//    }
 
     public void nextRoom(Room room){
         // TODO the room you move into
         previousRoom = currentRoom;
         currentRoom = room;
-        room.menu(currentRoom,"","","","");
+
 
     }
 
