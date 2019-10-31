@@ -4,7 +4,6 @@ import com.main.Entitys.Player;
 import com.main.Items.Magic.Magic;
 import com.main.Items.Magic.MagicEffect;
 import com.main.Items.Swords.Swords;
-import com.main.Tutorial;
 
 public class Combat {
 
@@ -33,24 +32,29 @@ public class Combat {
 
         }
 
-        while (enemy.hp > 0) {
-            switch (h.menu("attack", "magic", "info")) {
-                case "attack":
-                    attack(player, enemy);
+        while (enemy.hp > 0 && player.hp > 0) {
+            while (true) {
+                switch (h.menu("attack", "magic", "info")) {
+                    case "attack":
+                        attack(player, enemy);
 
-                    break;
+                        break;
 
-                case "magic":
-                    magic(player, enemy);
+                    case "magic":
+                        magic(player, enemy);
 
-                    break;
+                        break;
 
-                case "info":
-                    info(enemy);
+                    case "info":
+                        info(enemy);
 
-                    break;
+                        continue;
+                }
             }
+
+            enemyAttack(player, enemy);
         }
+
 
     }
 
@@ -61,17 +65,20 @@ public class Combat {
 
         enemy.hp = enemy.hp - damage;
 
-        print("You attack your enemy dealing" + (int)damage + "damage");
+        print("You attack your enemy dealing " + (int)damage + " damage.");
 
+        hpIndicator(enemy);
     }
 
     private void magic(Player player, Entity enemy){
         Magic m = player.inventory.menu(Magic.class);
+
         if (m.effect == MagicEffect.ENEMY){
             enemy.hp = enemy.hp - m.damage;
 
-            print("");
+            print("You use " + m.name + " it does " + m.damage + " magic damage.");
 
+            hpIndicator(enemy);
         }
         else if(m.effect == MagicEffect.SELF){
             player.hp = player.hp + m.damage;
@@ -81,6 +88,39 @@ public class Combat {
 
     private void info(Entity enemy){
         araPrint(enemy.infoText);
+
+    }
+
+    private void hpIndicator(Entity enemy){
+        if (enemy.hp > 80) {
+            print(enemy.name + " looks like they barely hurt at all.");
+
+        }
+        else if (enemy.hp <= 80 && enemy.hp > 40){
+            print(enemy.name + " looks like they are starting to be hurt.");
+
+        }
+        else if (enemy.hp <= 40 && enemy.hp > 10){
+            print(enemy.name + " looks like they are hurt really badly.");
+
+        }
+        else if (enemy.hp <= 10 && enemy.hp > 0){
+            print(enemy.name + " looks like they are about to die.");
+
+        }
+    }
+
+    private void enemyAttack(Player player, Entity enemy){
+        print(enemy.name + " goes in for an attack.");
+
+        if(h.randomNumber(0, 100) <= enemy.hitChance){
+            print(enemy.name + " hits dealing " + h.randomNumber(enemy.damageRangMin, enemy.damageRangMax) + " damage.");
+
+        }
+        else {
+            print(enemy.name + " missed their attack.");
+
+        }
 
     }
 

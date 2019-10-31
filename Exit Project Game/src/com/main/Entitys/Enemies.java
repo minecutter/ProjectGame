@@ -11,5 +11,6 @@ public class Enemies extends Entity {
         hp = 2;
         xp = 1000000000;
         gold = 0;
+
     }
 }

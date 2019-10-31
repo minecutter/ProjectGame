@@ -12,6 +12,9 @@ public class Ara extends Entity {
         xp = 1000000000;
         gold = 0;
         fightStartText = "All right lets start your test.";
-        infoText = "you don't need to know anything about me.";
+        infoText = "You don't need to know anything about me.";
+        damageRangMin = 5;
+        damageRangMax = 10;
+        hitChance = 100;
     }
 }

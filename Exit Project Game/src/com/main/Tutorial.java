@@ -42,7 +42,7 @@ public class Tutorial {
         araPrint("Lets start with your name.");
         araPrint("So just type it.");
 
-        player.Name = h.getInput();
+        player.name = h.getInput();
 
         Random r = new Random();
 
@@ -62,12 +62,12 @@ public class Tutorial {
                 araPrint("Is this the name your good with.");
             }
 
-            araPrint(player.Name);
+            araPrint(player.name);
 
             input = h.menu("yes", "no");
             if (input.equals("yes")) {
                 araPrint("Ok then");
-                araPrint(player.Name);
+                araPrint(player.name);
                 break;
             } else if (input.equals("no")) {
                 //araPrint(Helpers.randomString(snarkyRemarks));  //gives random string
@@ -80,7 +80,7 @@ public class Tutorial {
                 }
 
 //                i %= snarkyRemarks.length; //makes the array go one after the other in a loop
-                player.Name = h.getInput();
+                player.name = h.getInput();
             }
 
         }

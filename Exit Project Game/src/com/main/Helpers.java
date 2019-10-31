@@ -3,6 +3,7 @@ package com.main;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+
 import java.applet.Applet;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -28,7 +29,7 @@ public final class Helpers {
 
     private static final Scanner scan = new Scanner(System.in);
 
-//      private static final int textWait = 100;
+//      private static final int textWait = 100;  switch this back
       private static final int textWait = 10;
 
     public static void print(String... lines) {
@@ -56,7 +57,7 @@ public final class Helpers {
     }
 
 
-    public static void myWait(long millis) {
+    public static void myWait(long millis){
         try {
             Thread.sleep(millis);
         }
@@ -64,26 +65,19 @@ public final class Helpers {
 
     }
 
-//    public static String menu(String... items) {
-//
-//        for (String item: items) {
-//            out.println("- " + item);
-//
-//        }
-//
-//        while (true){
-//            String input = scan.nextLine();
-//
-//            if (Arrays.asList(items).contains(input)){
-//                return input;
-//            }
-//            else {
-//                print("that command won't work dummy");
-//            }
-//        }
-//    }
+    public static int randomNumber(int minNumber, int maxNumber){
+        Random r = new Random();
 
-    //  public <T extends Item> List<T> getItemsOfType(Class<T> fType) {
+        int randomNumber = r.nextInt(maxNumber - minNumber + 1);
+        int finalNumber = randomNumber + minNumber;
+
+        return finalNumber;
+    }
+
+    public static boolean randomBoolean(){
+        return Math.random() < 0.5;
+
+    }
 
     public static <T> T menu(T... items) {
 
