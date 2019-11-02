@@ -3,10 +3,10 @@ package com.main.Entitys;
 import com.main.Entity;
 import com.main.Helpers;
 
-public class Ara extends Entity {
+public class Ara extends Enemies {
 
-    public Ara(String name) {
-        super(name);
+    public Ara() {
+        name = "Ara";
         armor = 1;
         hp = 2;
         xp = 1000000000;

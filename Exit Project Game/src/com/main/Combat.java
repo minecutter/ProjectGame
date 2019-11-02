@@ -1,5 +1,6 @@
 package com.main;
 
+import com.main.Entitys.Enemies;
 import com.main.Entitys.Player;
 import com.main.Items.Magic.Magic;
 import com.main.Items.Magic.MagicEffect;
@@ -14,8 +15,9 @@ public class Combat {
     }
     protected void araPrint(String... lines) { Helpers.araPrint(lines);}
     protected Helpers h = new Helpers();
+    protected StartGame startGame = new StartGame();
 
-    public void start(Player player, Entity enemy){
+    public void start(Player player,Enemies enemy){
 
         if(tutorialLevel == true){
             araPrint("Thea's are the basic steps of combat for idiots that have never plaid games before.");
@@ -28,13 +30,16 @@ public class Combat {
             araPrint("The second command for when you are in combat is MAGIC.");
             araPrint("When you use this command you will aces your magic list and have to pick the magic you want to use.");
             araPrint("");
-            tutorialLevel = false;
 
         }
 
         while (enemy.hp > 0 && player.hp > 0) {
-            while (true) {
                 switch (h.menu("attack", "magic", "info")) {
+                    case "info":
+                        info(enemy);
+
+                        continue;
+
                     case "attack":
                         attack(player, enemy);
 
@@ -44,21 +49,21 @@ public class Combat {
                         magic(player, enemy);
 
                         break;
-
-                    case "info":
-                        info(enemy);
-
-                        continue;
                 }
-            }
 
             enemyAttack(player, enemy);
+            endFight(player, enemy);
+
+            if(tutorialLevel == true){
+                tutorialLevel = false;
+                break;
+            }
         }
 
 
     }
 
-    private void attack(Player player, Entity enemy){
+    private void attack(Player player, Enemies enemy){
         Swords s = player.inventory.menu(Swords.class);
 
         float damage = s.damage * enemy.armor;
@@ -70,7 +75,7 @@ public class Combat {
         hpIndicator(enemy);
     }
 
-    private void magic(Player player, Entity enemy){
+    private void magic(Player player, Enemies enemy){
         Magic m = player.inventory.menu(Magic.class);
 
         if (m.effect == MagicEffect.ENEMY){
@@ -86,12 +91,12 @@ public class Combat {
 
     }
 
-    private void info(Entity enemy){
+    private void info(Enemies enemy){
         araPrint(enemy.infoText);
 
     }
 
-    private void hpIndicator(Entity enemy){
+    private void hpIndicator(Enemies enemy){
         if (enemy.hp > 80) {
             print(enemy.name + " looks like they barely hurt at all.");
 
@@ -110,11 +115,15 @@ public class Combat {
         }
     }
 
-    private void enemyAttack(Player player, Entity enemy){
+    private void enemyAttack(Player player, Enemies enemy){
         print(enemy.name + " goes in for an attack.");
 
         if(h.randomNumber(0, 100) <= enemy.hitChance){
-            print(enemy.name + " hits dealing " + h.randomNumber(enemy.damageRangMin, enemy.damageRangMax) + " damage.");
+            float damage = h.randomNumber(enemy.damageRangMin, enemy.damageRangMax);
+
+            player.hp = player.hp - damage;
+
+            print(enemy.name + " hits dealing " + damage + " damage.");
 
         }
         else {
@@ -124,4 +133,21 @@ public class Combat {
 
     }
 
+    private void endFight(Player player, Entity enemy){
+        if(player.hp <= 0){
+            araPrint("You are really pitiful you know.");
+
+            print("You here Ara say right before you die.");
+
+            h.myWait(300);
+
+            startGame.startGame(false);
+        }
+        else if(enemy.hp <= 0){
+            print(enemy.name + " falls down and slowly starts dieing");
+            print("You take you sword and finish him of");
+
+        }
+
+    }
 }

@@ -14,6 +14,9 @@ public class Tutorial {
 
     Helpers h = new Helpers();
     TutorialMap tutorialMap = new TutorialMap();
+    Combat combat = new Combat();
+    Ara ara = new Ara();
+    Player player = new Player();
 
     protected void print(String... lines) {
         h.print(lines);
@@ -22,10 +25,10 @@ public class Tutorial {
         h.araPrint(lines);
     }
 
-    public void start(Player player, Ara ara, Combat combat) {
+    public void start(boolean newGame) {
 
 //      how to color text
-        System.out.println("\033[31mRed\033[32m, Green\033[33m, Yellow\033[34m, Blue\033[0m");
+//      System.out.println("\033[31mRed\033[32m, Green\033[33m, Yellow\033[34m, Blue\033[0m");
 
         araPrint("This is it intro.");
         araPrint("this is the instructions.");
@@ -43,8 +46,6 @@ public class Tutorial {
         araPrint("So just type it.");
 
         player.name = h.getInput();
-
-        Random r = new Random();
 
         String[] snarkyRemarks = new String[]{
                     "Ok then what is it.",
