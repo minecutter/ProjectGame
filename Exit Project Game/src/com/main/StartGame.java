@@ -9,14 +9,17 @@ public class StartGame {
     public void startGame(boolean newGame){
         Level1 level1 = new Level1();
 
-        level1.startLevel();
-
         Tutorial tutorial = new Tutorial();
-        Ara ara = new Ara();
 
-        ara.name = "Ara";
+        if(newGame == true) {
+            tutorial.start();
+
+        }
+        else if(newGame == false){
+            level1.startLevel();
+
+        }
 
 
-        tutorial.start(newGame);
     }
 }

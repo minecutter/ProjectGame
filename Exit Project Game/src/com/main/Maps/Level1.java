@@ -1,14 +1,16 @@
 package com.main.Maps;
 
+import com.main.Entitys.HumanSwordsman;
+
 public class Level1 extends Level {
     public Level1(){
 
 
         rooms = new Room[][]{
-            {new Room(/* Empty */), new Room(), new Room(), new Room()},
-            {new Room(new Wall(), new Wall(), new Door(), new Wall()), new Room(), new Room(), new Room()},
-            {new Room(/* Empty */), new Room(), new Room(), new Room()},
-            {new Room(/* Empty */), new Room(), new Room(/* Empty */), new Room(/* Empty */)}
+            {new Room(/* Empty */), new Room(new Door(), new Wall(), new Door(), new Wall()), new Room(new Door(), new Wall(), new Door(), new Door()), new EnemyRoom(new Door(), new Wall(), new Wall(), new Door(), new HumanSwordsman())},
+            {new Room(new Wall(), new Wall(), new Door(), new Wall()), new Room(new Door(), new Door(), new Door(), new Wall()), new Room(new Door(), new Door(), new Door(), new Door()), new Room(new Door(), new Door(), new Wall(), new Door())},
+            {new Room(/* Empty */), new Room(new LockedDoor(), new Door(), new Door(), new Wall()), new Room(new Wall(), new Door(), new Door(), new Door()), new Room(new Wall(), new Door(), new Wall(), new Door())},
+            {new Room(/* Empty */), new Room(new Wall(), new Door(), new Wall(), new Wall()), new Room(/* Empty */), new Room(/* Empty */)}
         };
         // can chang the new Room to like new TPRoom
         // put possible direction in rooms

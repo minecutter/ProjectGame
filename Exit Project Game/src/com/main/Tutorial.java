@@ -25,7 +25,7 @@ public class Tutorial {
         h.araPrint(lines);
     }
 
-    public void start(boolean newGame) {
+    public void start() {
 
 //      how to color text
 //      System.out.println("\033[31mRed\033[32m, Green\033[33m, Yellow\033[34m, Blue\033[0m");
@@ -92,7 +92,7 @@ public class Tutorial {
         player.inventory.add(new BasicSword());
         player.inventory.add(new FireShot());
 
-        combat.start(player,ara);
+        combat.start(ara);
 
         araPrint("Now that you have learned how to fight you now need to learn how to move around.");
 

@@ -8,7 +8,7 @@ public class Ara extends Enemies {
     public Ara() {
         name = "Ara";
         armor = 1;
-        hp = 2;
+        hp = 1;
         xp = 1000000000;
         gold = 0;
         fightStartText = "All right lets start your test.";

@@ -16,8 +16,9 @@ public class Combat {
     protected void araPrint(String... lines) { Helpers.araPrint(lines);}
     protected Helpers h = new Helpers();
     protected StartGame startGame = new StartGame();
+    protected Player player = new Player();
 
-    public void start(Player player,Enemies enemy){
+    public void start(Enemies enemy){
 
         if(tutorialLevel == true){
             araPrint("Thea's are the basic steps of combat for idiots that have never plaid games before.");
@@ -41,18 +42,18 @@ public class Combat {
                         continue;
 
                     case "attack":
-                        attack(player, enemy);
+                        attack(enemy);
 
                         break;
 
                     case "magic":
-                        magic(player, enemy);
+                        magic(enemy);
 
                         break;
                 }
 
-            enemyAttack(player, enemy);
-            endFight(player, enemy);
+            enemyAttack(enemy);
+            endFight(enemy);
 
             if(tutorialLevel == true){
                 tutorialLevel = false;
@@ -63,7 +64,7 @@ public class Combat {
 
     }
 
-    private void attack(Player player, Enemies enemy){
+    private void attack(Enemies enemy){
         Swords s = player.inventory.menu(Swords.class);
 
         float damage = s.damage * enemy.armor;
@@ -75,7 +76,7 @@ public class Combat {
         hpIndicator(enemy);
     }
 
-    private void magic(Player player, Enemies enemy){
+    private void magic(Enemies enemy){
         Magic m = player.inventory.menu(Magic.class);
 
         if (m.effect == MagicEffect.ENEMY){
@@ -115,7 +116,7 @@ public class Combat {
         }
     }
 
-    private void enemyAttack(Player player, Enemies enemy){
+    private void enemyAttack(Enemies enemy){
         print(enemy.name + " goes in for an attack.");
 
         if(h.randomNumber(0, 100) <= enemy.hitChance){
@@ -133,7 +134,7 @@ public class Combat {
 
     }
 
-    private void endFight(Player player, Entity enemy){
+    private void endFight(Entity enemy){
         if(player.hp <= 0){
             araPrint("You are really pitiful you know.");
 

@@ -14,38 +14,10 @@ public class Room {
     }
     protected void araPrint(String... lines) { Helpers.araPrint(lines);}
 
-//    private Wall posXWall;
-//    private Wall negXWall;
-//    private Wall posYWall;
-//    private Wall negYWall;
 
-    private static final int wallCount = Direction.values().length;
+    protected static final int wallCount = Direction.values().length;
 
-    private Wall[] walls = new Wall[wallCount];
-
-    private String posXWallText;
-    private String negXWallText;
-    private String posYWallText;
-    private String negYWallText;
-    private String otherRoomText;
-
-    private boolean entersRoomFromPosX = false;
-    private boolean entersRoomFromNegX = false;
-    private boolean entersRoomFromPosY = false;
-    private boolean entersRoomFromNegY = false;
-
-//    public Room(Wall posXWall, Wall negXWall, Wall posYWall, Wall negYWall,String posXWallText, String negXWallText, String posYWallText, String negYWallText, String otherRoomText){
-//        this.posXWall = posXWall;
-//        this.negXWall = negXWall;
-//        this.posYWall = posYWall;
-//        this.negYWall = negYWall;
-//        this.posXWallText = posXWallText;
-//        this.negXWallText = negXWallText;
-//        this.posYWallText = posYWallText;
-//        this.negYWallText = negYWallText;
-//        this.otherRoomText = otherRoomText;
-//
-//    }
+    protected Wall[] walls = new Wall[wallCount];
 
     public Room(Wall posXWall, Wall negXWall, Wall posYWall, Wall negYWall){
         walls[Direction.POSX.ordinal()] = posXWall;
@@ -56,10 +28,11 @@ public class Room {
     }
 
     public Room(){
-//        posXWall = Wall.WALL;
-//        negXWall = Wall.WALL;
-//        posYWall = Wall.WALL;
-//        negYWall = Wall.WALL;
+        walls[Direction.POSX.ordinal()] = new Wall();
+        walls[Direction.NEGX.ordinal()] = new Wall();
+        walls[Direction.POSY.ordinal()] = new Wall();
+        walls[Direction.NEGY.ordinal()] = new Wall();
+
     }
 
     public void playRoom(Direction direction){
@@ -110,7 +83,7 @@ public class Room {
             }
         }
     }
-    private void searchRoom () {
+    protected void searchRoom () {
 
 
     }
