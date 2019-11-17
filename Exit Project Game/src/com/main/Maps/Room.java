@@ -35,10 +35,11 @@ public class Room {
 
     }
 
-    public void playRoom(Direction direction){
+    public Direction playRoom(Direction direction){
         startRoom();
-        menu(direction);
+        Direction travelDirection = menu(direction);
         endRoom();
+        return travelDirection;
     }
 
     public void startRoom(){
@@ -51,15 +52,10 @@ public class Room {
 
     }
 
-    public void nextRoom(){
-
-
-    }
-
     public Direction menu(Direction direction) {
         print("In front of you is " + walls[direction.ordinal()].toString());
-        print("To the right there is " + walls[(direction.ordinal() + 1) % wallCount].toString());
-        print("To the left there is " + walls[(direction.ordinal() - 1) % wallCount].toString());
+        print("To the right there is " + walls[(direction.ordinal() - 1) % wallCount].toString());
+        print("To the left there is " + walls[(direction.ordinal() + 1) % wallCount].toString());
 
         while (true) {
             switch (h.menu("Forward", "Right", "Left", "Back", "Search")) {
@@ -84,7 +80,7 @@ public class Room {
         }
     }
     protected void searchRoom () {
-
+        print("There is nothing in this room that can help you.");
 
     }
 }

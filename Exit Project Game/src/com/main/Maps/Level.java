@@ -1,31 +1,57 @@
 package com.main.Maps;
 
+import com.main.Helpers;
+
+import java.awt.*;
+
 public class Level {
+    protected void print(String... lines) {
+        Helpers.print(lines);
+    }
+    protected void araPrint(String... lines) { Helpers.araPrint(lines);}
 
     protected Room[][] rooms;
-    protected Room currentRoom;
-    protected Room previousRoom;
-    protected Room startRoom;
-    protected Room endRoom;
+    protected Point currentPoint;
+    protected Point startPoint;
+    protected Point endPoint;
     protected Direction currentDirection;
 
 
-    public void startLevel(){
-        // TODO start level
-        currentRoom = startRoom;
-        currentRoom.playRoom(currentDirection);
+    public void playLevel(){
+        currentPoint = startPoint;
+        startLevel();
+
+        while (true) {
+            currentDirection = rooms[currentPoint.x][currentPoint.y].playRoom(currentDirection);
+            nextRoom(currentDirection);
+            if(currentPoint.equals(endPoint)){
+                break;
+            }
+
+        }
+        endLevel();
     }
 
-//    public void startRoom(){
-//        // TODO the first
-//        currentRoom.menu(currentDirection);
-//    }
+    public void nextRoom(Direction travelDirection){
+        if(travelDirection == Direction.POSX){
+            currentPoint.move(1,0);
+        }
+        else if(travelDirection == Direction.NEGX){
+            currentPoint.move(-1,0);
+        }
+        else if(travelDirection == Direction.POSY){
+            currentPoint.move(0,1);
+        }
+        else if(travelDirection == Direction.NEGY){
+            currentPoint.move(0,-1);
+        }
 
-    public void nextRoom(Room room){
-        // TODO the room you move into
-        previousRoom = currentRoom;
-        currentRoom = room;
+    }
 
+    public void endLevel(){
+
+    }
+    public void startLevel(){
 
     }
 
