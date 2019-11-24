@@ -15,7 +15,9 @@ public class Level {
     protected Point startPoint;
     protected Point endPoint;
     protected Direction currentDirection;
-
+    protected Wall wall = new Wall();
+    protected Door door = new Door();
+    protected LockedDoor lDoor = new LockedDoor();
 
     public void playLevel(){
         currentPoint = startPoint;

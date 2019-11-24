@@ -10,9 +10,6 @@ public class Level1 extends Level {
 
 
     public Level1(){
-        Wall wall = new Wall();
-        Door door = new Door();
-        LockedDoor lDoor = new LockedDoor();
 
         rooms = new Room[][]{
             {new Room(/* Empty                           */), new Room(door, wall, door, wall, "(0,1)"), new Room(door, wall, door, door, "(0,2)"), new EnemyRoom(door, wall, door, wall, new HumanSpearMan())},
@@ -38,7 +35,10 @@ public class Level1 extends Level {
     }
 
     public void startLevel(){
-        print("startLevel");
+        print("As you step though the portal and a very bright light and a loud rigging in you ears.");
+        print("You instinctively cover you eyes as the light and ringing get louder.");
+        print("Then suddenly it all stops.");
+        print("You open your eyes and you are in a room with what appears to be a large magic circle on the ground beneath your feat.");
 
 
 
