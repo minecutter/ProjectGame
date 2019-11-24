@@ -23,6 +23,7 @@ public class Level {
 
         while (true) {
             currentDirection = rooms[currentPoint.x][currentPoint.y].playRoom(currentDirection);
+//            print(rooms[currentPoint.x][currentPoint.y].Name);
             nextRoom(currentDirection);
             if(currentPoint.equals(endPoint)){
                 break;
@@ -34,16 +35,16 @@ public class Level {
 
     public void nextRoom(Direction travelDirection){
         if(travelDirection == Direction.POSX){
-            currentPoint.move(1,0);
+            currentPoint.translate(1,0);
         }
         else if(travelDirection == Direction.NEGX){
-            currentPoint.move(-1,0);
+            currentPoint.translate(-1,0);
         }
         else if(travelDirection == Direction.POSY){
-            currentPoint.move(0,1);
+            currentPoint.translate(0,1);
         }
         else if(travelDirection == Direction.NEGY){
-            currentPoint.move(0,-1);
+            currentPoint.translate(0,-1);
         }
 
     }

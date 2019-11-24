@@ -11,13 +11,14 @@ public class Player extends Entity {
     public String items;
     public int mp;
 
-    public void level1Stats(){
+    public Player(){
         hp = 100;
         mp = 100;
         gold = 10;
         xp = 0;
-
     }
+
+
     public void level2Stats(){
         hp = 150;
         mp = 150;

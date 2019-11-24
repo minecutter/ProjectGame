@@ -5,4 +5,8 @@ public class Door extends Wall {
     public String toString() {
         return "door";
     }
+
+    public boolean canEnter(){
+        return true;
+    }
 }

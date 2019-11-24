@@ -35,6 +35,7 @@ public class Combat {
         }
 
         while (enemy.hp > 0 && player.hp > 0) {
+            print(player.name + ": HP= " + player.hp + " MP= " + player.mp);
                 switch (h.menu("attack", "magic", "info")) {
                     case "info":
                         info(enemy);

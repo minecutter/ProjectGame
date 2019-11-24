@@ -4,6 +4,7 @@ import com.main.Entitys.Player;
 import com.main.Entitys.*;
 import com.main.Items.Magic.FireShot;
 import com.main.Items.Swords.BasicSword;
+import com.main.Maps.Level1;
 import com.main.Maps.TutorialMap;
 
 import java.util.*;
@@ -98,6 +99,12 @@ public class Tutorial {
 
         tutorialMap.roomA1();
 
+        araPrint("All right now that that shit is out of the way i can finally get you out of my home.");
+        print("Ara starts to make what looks like a portal.");
+        print("She then proceeds to push you though the portal with much more strength then a person of that size could actually use.");
+        araPrint("Good now that you are though I will send you to the humans now.");
+
+        new Level1().playLevel();
     }
 
 }

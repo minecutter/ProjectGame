@@ -10,6 +10,8 @@ public class StartGame {
 
         level1.playLevel();
 
+
+
         if(newGame == true) {
             tutorial.start();
 

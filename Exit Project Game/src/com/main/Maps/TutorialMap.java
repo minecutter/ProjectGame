@@ -181,7 +181,7 @@ public class TutorialMap {
 
                 break;
             case "right":
-
+                print("You  walk into the door and Ara starts speaking to you.");
                 break;
             case "search":
 
@@ -192,7 +192,7 @@ public class TutorialMap {
 
                 print("You find nothing.");
                 print("As you get up Ara looks annoyed");
-                araPrint("Stop goofing around you almost done.");
+                araPrint("Stop goofing around your almost done.");
 
                 break;
         }

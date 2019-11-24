@@ -5,4 +5,13 @@ public class Wall {
     public String toString() {
         return "wall";
     }
+
+    public boolean canEnter(){
+        return false;
+    }
+
+    public void enterText(){
+
+    }
+
 }
