@@ -4,6 +4,8 @@ import com.main.Entitys.Player;
 import com.main.Entitys.*;
 import com.main.Items.Magic.FireShot;
 import com.main.Items.Swords.BasicSword;
+import com.main.Items.Swords.GasterBlaster;
+import com.main.Items.Swords.GoodSword;
 import com.main.Maps.Level1;
 import com.main.Maps.TutorialMap;
 
@@ -26,14 +28,15 @@ public class Tutorial {
         h.araPrint(lines);
     }
 
-    public void start() {
+    public boolean start() throws DiedExeption{
 
 //      how to color text
 //      System.out.println("\033[31mRed\033[32m, Green\033[33m, Yellow\033[34m, Blue\033[0m");
 
-        araPrint("This is it intro.");
-        araPrint("this is the instructions.");
-        araPrint("do you understand?");
+        araPrint("Welcome to this game and bla bla bla.");
+        araPrint("My name is Ara and I am the god of this place which sadly has to deal with you.");
+        araPrint("To respond either type the number next to the prompted you receive or fully type out our selection.");
+        araPrint("Do you understand?");
 
         String input = h.menu("yes","no");
             if (input.equals("yes")) {
@@ -41,12 +44,16 @@ public class Tutorial {
 
             } else if (input.equals("no")) {
                 araPrint("really!?");
-                araPrint("well to bad");
+
             }
         araPrint("Lets start with your name.");
         araPrint("So just type it.");
 
         player.name = h.getInput();
+
+        if (nameCheck() == false){
+            return false;
+        }
 
         String[] snarkyRemarks = new String[]{
                     "Ok then what is it.",
@@ -84,7 +91,6 @@ public class Tutorial {
 //                i %= snarkyRemarks.length; //makes the array go one after the other in a loop
                 player.name = h.getInput();
             }
-
         }
 
         araPrint("Ok now that we have that out of the way lets move on to fighting.");
@@ -94,6 +100,9 @@ public class Tutorial {
         player.inventory.add(new FireShot());
 
         combat.start(ara);
+
+        player.inventory.add(new GoodSword());
+        player.inventory.remove(new BasicSword());
 
         araPrint("Now that you have learned how to fight you now need to learn how to move around.");
 
@@ -105,6 +114,23 @@ public class Tutorial {
         araPrint("Good now that you are though I will send you to the humans now.");
 
         new Level1().playLevel();
+        return true;
+    }
+
+    private boolean nameCheck(){
+        if(player.name.toLowerCase() == "sans"){
+            player.inventory.add(new GasterBlaster());
+        }
+        else if(player.name.toLowerCase() == "jarod"){
+            return false;
+        }
+        else if(player.name.toLowerCase() == "logan"){
+            player.name = "Not very helpful";
+        }
+        else if(player.name.toLowerCase() == "teemo"){
+            player.name = "Cancer";
+        }
+        return true;
     }
 
 }

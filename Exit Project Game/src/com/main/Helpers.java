@@ -29,8 +29,8 @@ public final class Helpers {
 
     private static final Scanner scan = new Scanner(System.in);
 
-//      private static final int textWait = 100;  switch this back
-      private static final int textWait = 10;
+      private static final int textWait = 100;  //switch this back
+//      private static final int textWait = 10;   //test #
 
     public static void print(String... lines) {
         for (String line: lines) {
@@ -52,7 +52,6 @@ public final class Helpers {
         lines[lines.length - 1] =  lines[lines.length - 1] + "\033[0m";
 
         print(lines);
-
 
     }
 
@@ -126,7 +125,7 @@ public final class Helpers {
         print("You start searching the room");
         print(" ");
 
-        myWait(300);
+        myWait(3000);
         if(roomstat == false) {
             print("You find nothing.");
         }

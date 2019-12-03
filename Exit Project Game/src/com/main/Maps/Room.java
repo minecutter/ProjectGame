@@ -1,5 +1,6 @@
 package com.main.Maps;
 
+import com.main.DiedExeption;
 import com.main.Helpers;
 
 import javax.naming.directory.SearchControls;
@@ -37,7 +38,7 @@ public class Room {
 
     }
 
-    public Direction playRoom(Direction direction){
+    public Direction playRoom(Direction direction) throws DiedExeption {
         startRoom();
         Direction travelDirection = menu(direction);
         endRoom();
@@ -45,7 +46,7 @@ public class Room {
         return travelDirection;
     }
 
-    public void startRoom(){
+    public void startRoom() throws DiedExeption {
 
 
     }
@@ -64,7 +65,7 @@ public class Room {
         while (true) {
             Direction d;
 
-            switch (h.menu("Forward", "Right", "Left", "Back", "Search")) {
+            switch (h.menu("Forward", "Right", "Left", "Back")) {
                 case "Forward":
                     if (!walls[direction.ordinal()].canEnter()){
                         araPrint("a");
@@ -97,10 +98,10 @@ public class Room {
                     }
 
                     return d;
-                case "Search":
-                    searchRoom();
-
-                    continue;
+//                case "Search":
+//                    searchRoom();
+//
+//                    continue;
             }
         }
     }

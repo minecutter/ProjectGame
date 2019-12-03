@@ -4,23 +4,20 @@ import com.main.Maps.Level1;
 
 public class StartGame {
 
-    public void startGame(boolean newGame){
-        Level1 level1 = new Level1();
+    public void startGame(){
         Tutorial tutorial = new Tutorial();
+        Helpers h = new Helpers();
 
-        level1.playLevel();
-
-
-
-        if(newGame == true) {
-            tutorial.start();
-
+        while (true) {
+            try {
+                if (!(tutorial.start() == false)) break;
+            } catch (DiedExeption diedExeption) {
+                h.araPrint(diedExeption.getMessage());
+                h.myWait(5000);
+                continue;
+            }
         }
-        else if(newGame == false){
-            level1.playLevel();
-
-        }
-
 
     }
+
 }

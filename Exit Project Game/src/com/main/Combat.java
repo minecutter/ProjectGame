@@ -18,14 +18,14 @@ public class Combat {
     protected StartGame startGame = new StartGame();
     protected Player player = new Player();
 
-    public void start(Enemies enemy){
+    public void start(Enemies enemy) throws DiedExeption {
 
         if(tutorialLevel == true){
             araPrint("Thea's are the basic steps of combat for idiots that have never plaid games before.");
             araPrint("If you have plaid games before good for you, but I don't care so your getting my long bit of dialog anyway.");
             araPrint("The first command for when you are in combat is ATTACK.");
 
-            Helpers.myWait(200);
+            Helpers.myWait(2000);
 
             araPrint("What are you expecting a deeper explanation you will literally just attack the target with your sword.");
             araPrint("The second command for when you are in combat is MAGIC.");
@@ -135,15 +135,15 @@ public class Combat {
 
     }
 
-    private void endFight(Entity enemy){
+    private void endFight(Entity enemy) throws DiedExeption {
         if(player.hp <= 0){
             araPrint("You are really pitiful you know.");
 
             print("You here Ara say right before you die.");
 
-            h.myWait(300);
+            h.myWait(3000);
 
-            startGame.startGame(false);
+            throw new DiedExeption("Well you suck.");
         }
         else if(enemy.hp <= 0){
             print(enemy.name + " falls down and slowly starts dieing");

@@ -1,5 +1,6 @@
 package com.main.Maps;
 
+import com.main.DiedExeption;
 import com.main.Helpers;
 
 import java.awt.*;
@@ -19,7 +20,7 @@ public class Level {
     protected Door door = new Door();
     protected LockedDoor lDoor = new LockedDoor();
 
-    public void playLevel(){
+    public void playLevel() throws DiedExeption {
         currentPoint = startPoint;
         startLevel();
 
@@ -51,7 +52,7 @@ public class Level {
 
     }
 
-    public void endLevel(){
+    public void endLevel() throws DiedExeption {
 
     }
     public void startLevel(){
