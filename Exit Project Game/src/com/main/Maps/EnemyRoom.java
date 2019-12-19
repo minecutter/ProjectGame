@@ -3,6 +3,7 @@ package com.main.Maps;
 import com.main.Combat;
 import com.main.DiedExeption;
 import com.main.Entitys.Enemies;
+import com.main.Entitys.Player;
 
 import java.util.Random;
 
@@ -21,10 +22,10 @@ public class EnemyRoom extends Room {
        enemy = enemies;
     }
 
-    public void startRoom()throws DiedExeption {
+    public void startRoom(Player player)throws DiedExeption {
         print("When you enter the room you are confronted by a " + enemy.name);
 
-        combat.start(enemy);
+        combat.start(enemy, player);
 
     }
 

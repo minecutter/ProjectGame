@@ -7,6 +7,7 @@ public class FireShot extends Magic {
         effect = MagicEffect.ENEMY;
         effectNumber = 15;
         damage = 10;
+        name = "Fire Shot";
     }
 
 }

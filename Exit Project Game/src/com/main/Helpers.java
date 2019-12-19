@@ -29,8 +29,8 @@ public final class Helpers {
 
     private static final Scanner scan = new Scanner(System.in);
 
-      private static final int textWait = 100;  //switch this back
-//      private static final int textWait = 10;   //test #
+//      private static final int textWait = 100;  //switch back to this
+      private static final int textWait = 0;   //test #
 
     public static void print(String... lines) {
         for (String line: lines) {
@@ -47,9 +47,9 @@ public final class Helpers {
     }
 
     public static void araPrint(String... lines) {
-        lines[0] = "\033[31m" + lines[0];
+        lines[0] = "Ara: " + lines[0];
 
-        lines[lines.length - 1] =  lines[lines.length - 1] + "\033[0m";
+        lines[lines.length - 1] =  lines[lines.length - 1];
 
         print(lines);
 

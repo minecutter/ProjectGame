@@ -38,7 +38,7 @@ public class Inventory {
     public <T extends Item> List<T> getItemsOfType(Class<T> fType) {
         List<T> list = new ArrayList<T>();
         for (Item item : items) {
-            if (item.getClass() == fType) {
+            if (fType.isAssignableFrom(item.getClass())) {
                 list.add(fType.cast(item));
             }
         }
@@ -48,7 +48,7 @@ public class Inventory {
     public <T extends Item> T menu(Class<T> fType) {
         List<T> tItems = getItemsOfType(fType);
 
-        return fType.cast(h.menu(tItems));
+        return fType.cast(h.menu(tItems.toArray()));
     }
 }
 

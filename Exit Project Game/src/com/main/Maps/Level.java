@@ -1,6 +1,7 @@
 package com.main.Maps;
 
 import com.main.DiedExeption;
+import com.main.Entitys.Player;
 import com.main.Helpers;
 
 import java.awt.*;
@@ -20,12 +21,12 @@ public class Level {
     protected Door door = new Door();
     protected LockedDoor lDoor = new LockedDoor();
 
-    public void playLevel() throws DiedExeption {
+    public void playLevel(Player player) throws DiedExeption {
         currentPoint = startPoint;
         startLevel();
 
         while (true) {
-            currentDirection = rooms[currentPoint.x][currentPoint.y].playRoom(currentDirection);
+            currentDirection = rooms[currentPoint.x][currentPoint.y].playRoom(currentDirection, player);
 //            print(rooms[currentPoint.x][currentPoint.y].Name);
             nextRoom(currentDirection);
             if(currentPoint.equals(endPoint)){
@@ -33,7 +34,7 @@ public class Level {
             }
 
         }
-        endLevel();
+        endLevel(player);
     }
 
     public void nextRoom(Direction travelDirection){
@@ -52,7 +53,7 @@ public class Level {
 
     }
 
-    public void endLevel() throws DiedExeption {
+    public void endLevel(Player player) throws DiedExeption {
 
     }
     public void startLevel(){

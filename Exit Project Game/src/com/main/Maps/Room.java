@@ -1,6 +1,7 @@
 package com.main.Maps;
 
 import com.main.DiedExeption;
+import com.main.Entitys.Player;
 import com.main.Helpers;
 
 import javax.naming.directory.SearchControls;
@@ -38,15 +39,15 @@ public class Room {
 
     }
 
-    public Direction playRoom(Direction direction) throws DiedExeption {
-        startRoom();
+    public Direction playRoom(Direction direction, Player player) throws DiedExeption {
+        startRoom(player);
         Direction travelDirection = menu(direction);
         endRoom();
 
         return travelDirection;
     }
 
-    public void startRoom() throws DiedExeption {
+    public void startRoom(Player player) throws DiedExeption {
 
 
     }

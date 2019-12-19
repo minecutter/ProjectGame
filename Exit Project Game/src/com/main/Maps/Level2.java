@@ -22,15 +22,15 @@ public class Level2 extends Level {
         //                                                                                                                                      POSX, NEGX, POSY, NEGY
     }
 
-    public void startLevel(){
+    public void startLevel(Player player){
         print("You go up the ladder and into the next room.");
     }
 
-    public void endLevel() throws DiedExeption {
+    public void endLevel(Player player) throws DiedExeption {
         print("You slowly walk up a flight of stairs to the final floor.");
 
-        new Player().level3Stats();
-        new Level3().playLevel();
+        player.level3Stats();
+        new Level3().playLevel(player);
 
     }
 }

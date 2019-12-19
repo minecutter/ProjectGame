@@ -19,7 +19,6 @@ public class Tutorial {
     TutorialMap tutorialMap = new TutorialMap();
     Combat combat = new Combat();
     Ara ara = new Ara();
-    Player player = new Player();
 
     protected void print(String... lines) {
         h.print(lines);
@@ -28,7 +27,7 @@ public class Tutorial {
         h.araPrint(lines);
     }
 
-    public boolean start() throws DiedExeption{
+    public boolean start(Player player) throws DiedExeption{
 
 //      how to color text
 //      System.out.println("\033[31mRed\033[32m, Green\033[33m, Yellow\033[34m, Blue\033[0m");
@@ -51,7 +50,7 @@ public class Tutorial {
 
         player.name = h.getInput();
 
-        if (nameCheck() == false){
+        if (nameCheck(player) == false){
             return false;
         }
 
@@ -76,7 +75,7 @@ public class Tutorial {
             input = h.menu("yes", "no");
             if (input.equals("yes")) {
                 araPrint("Ok then");
-                araPrint(player.name);
+                print(player.name);
                 break;
             } else if (input.equals("no")) {
                 //araPrint(Helpers.randomString(snarkyRemarks));  //gives random string
@@ -99,7 +98,7 @@ public class Tutorial {
         player.inventory.add(new BasicSword());
         player.inventory.add(new FireShot());
 
-        combat.start(ara);
+        combat.start(ara, player);
 
         player.inventory.add(new GoodSword());
         player.inventory.remove(new BasicSword());
@@ -113,21 +112,21 @@ public class Tutorial {
         print("She then proceeds to push you though the portal with much more strength then a person of that size could actually use.");
         araPrint("Good now that you are though I will send you to the humans now.");
 
-        new Level1().playLevel();
+        new Level1().playLevel(player);
         return true;
     }
 
-    private boolean nameCheck(){
-        if(player.name.toLowerCase() == "sans"){
+    private boolean nameCheck(Player player){
+        if(player.name.toLowerCase().equals("sans")){
             player.inventory.add(new GasterBlaster());
         }
-        else if(player.name.toLowerCase() == "jarod"){
+        else if(player.name.toLowerCase().equals("jarod")){
             return false;
         }
-        else if(player.name.toLowerCase() == "logan"){
+        else if(player.name.toLowerCase().equals("logan")){
             player.name = "Not very helpful";
         }
-        else if(player.name.toLowerCase() == "teemo"){
+        else if(player.name.toLowerCase().equals("teemo")){
             player.name = "Cancer";
         }
         return true;

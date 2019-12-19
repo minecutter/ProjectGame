@@ -16,9 +16,8 @@ public class Combat {
     protected void araPrint(String... lines) { Helpers.araPrint(lines);}
     protected Helpers h = new Helpers();
     protected StartGame startGame = new StartGame();
-    protected Player player = new Player();
 
-    public void start(Enemies enemy) throws DiedExeption {
+    public void start(Enemies enemy, Player player) throws DiedExeption {
 
         if(tutorialLevel == true){
             araPrint("Thea's are the basic steps of combat for idiots that have never plaid games before.");
@@ -43,18 +42,20 @@ public class Combat {
                         continue;
 
                     case "attack":
-                        attack(enemy);
+                        attack(enemy, player);
 
                         break;
 
                     case "magic":
-                        magic(enemy);
+                        magic(enemy, player);
 
                         break;
                 }
 
-            enemyAttack(enemy);
-            endFight(enemy);
+            enemyAttack(enemy, player);
+            if(endFight(enemy, player) == false){
+                break;
+            }
 
             if(tutorialLevel == true){
                 tutorialLevel = false;
@@ -65,10 +66,10 @@ public class Combat {
 
     }
 
-    private void attack(Enemies enemy){
+    private void attack(Enemies enemy, Player player){
         Swords s = player.inventory.menu(Swords.class);
 
-        float damage = s.damage * enemy.armor;
+        float damage = s.damage * (1f - enemy.armor);
 
         enemy.hp = enemy.hp - damage;
 
@@ -77,7 +78,7 @@ public class Combat {
         hpIndicator(enemy);
     }
 
-    private void magic(Enemies enemy){
+    private void magic(Enemies enemy, Player player){
         Magic m = player.inventory.menu(Magic.class);
 
         if (m.effect == MagicEffect.ENEMY){
@@ -117,7 +118,7 @@ public class Combat {
         }
     }
 
-    private void enemyAttack(Enemies enemy){
+    private void enemyAttack(Enemies enemy, Player player){
         print(enemy.name + " goes in for an attack.");
 
         if(h.randomNumber(0, 100) <= enemy.hitChance){
@@ -135,7 +136,7 @@ public class Combat {
 
     }
 
-    private void endFight(Entity enemy) throws DiedExeption {
+    private boolean endFight(Entity enemy, Player player) throws DiedExeption {
         if(player.hp <= 0){
             araPrint("You are really pitiful you know.");
 
@@ -149,7 +150,8 @@ public class Combat {
             print(enemy.name + " falls down and slowly starts dieing");
             print("You take you sword and finish him of");
 
+            return false;
         }
-
+        return true;
     }
 }

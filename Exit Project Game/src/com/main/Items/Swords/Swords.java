@@ -7,4 +7,5 @@ public class Swords extends Item {
     public int goldValue;
     public int damage;
 
+
 }

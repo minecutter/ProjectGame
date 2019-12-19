@@ -36,7 +36,7 @@ public class Level1 extends Level {
 
     }
 
-    public void startLevel(){
+    public void startLevel(Player player){
         print("As you step though the portal and a very bright light and a loud rigging in you ears.");
         print("You instinctively cover you eyes as the light and ringing get louder.");
         print("Then suddenly it all stops.");
@@ -50,7 +50,7 @@ public class Level1 extends Level {
         print("Though the door in front of you, you here someone talking though it sound doesn't sound like it is in the next room.");
     }
 
-    public void endLevel()throws DiedExeption {
+    public void endLevel(Player player)throws DiedExeption {
         print("You unlock the door and there is about 20 demons in chains.");
         print("You unlock the demons from there chains.");
         print("The demon that was in the room you started in.");
@@ -58,8 +58,8 @@ public class Level1 extends Level {
         print("She tells you that the king is at the top flor of the demons home and that you are currently on the bottom.");
         print("She shoes you the later and wishes you luck as you go higher into the cave.");
 
-        new Player().level2Stats();
-        new Level2().playLevel();
+        player.level2Stats();
+        new Level2().playLevel(player);
 
     }
 }

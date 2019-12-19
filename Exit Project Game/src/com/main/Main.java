@@ -12,11 +12,5 @@ public class Main {
 
         startGame.startGame();
 
-
-
-
-
-
     }
-
 }
