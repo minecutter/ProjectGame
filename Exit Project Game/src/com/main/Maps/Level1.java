@@ -34,7 +34,7 @@ public class Level1 extends Level {
 
         //POSX, NEGX, POSY, NEGY
 
-
+        print("test text");
     }
 
     public void startLevel(Player player){
