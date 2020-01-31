@@ -4,6 +4,7 @@ import com.main.DiedExeption;
 import com.main.Entitys.Player;
 import com.main.Helpers;
 import com.main.Inventory;
+import com.main.Items.Keys.Key;
 
 import javax.naming.directory.SearchControls;
 import java.lang.reflect.Array;
@@ -18,6 +19,7 @@ public class Room {
     protected void araPrint(String... lines) { Helpers.araPrint(lines);}
 
     public String Name = "";
+    public Key key = new Key();
 
     protected static final int wallCount = Direction.values().length;
 
@@ -31,6 +33,14 @@ public class Room {
         Name = name;
 
     }
+    public Room(Wall posXWall, Wall negXWall, Wall posYWall, Wall negYWall, String name, Key Key){
+        walls[Direction.POSX.ordinal()] = posXWall;
+        walls[Direction.NEGX.ordinal()] = negXWall;
+        walls[Direction.POSY.ordinal()] = posYWall;
+        walls[Direction.NEGY.ordinal()] = negYWall;
+        Name = name;
+        key = Key;
+    }
 
     public Room(){
         walls[Direction.POSX.ordinal()] = new Wall();
@@ -42,7 +52,7 @@ public class Room {
 
     public Direction playRoom(Direction direction, Player player) throws DiedExeption {
         startRoom(player);
-        Direction travelDirection = menu(direction);
+        Direction travelDirection = menu(direction, player);
         endRoom(player.inventory);
 
         return travelDirection;
@@ -58,7 +68,7 @@ public class Room {
 
     }
 
-    public Direction menu(Direction direction) {
+    public Direction menu(Direction direction, Player player) {
 //        print(Name); //For testing purposes
         print("In front of you is " + walls[direction.ordinal()].toString());
         print("To the right there is " + walls[(direction.ordinal() + 3) % wallCount].toString());
@@ -69,7 +79,7 @@ public class Room {
 
             switch (h.menu("Forward", "Right", "Left", "Back")) {
                 case "Forward":
-                    if (!walls[direction.ordinal()].canEnter()){
+                    if (!walls[direction.ordinal()].canEnter(player, key)){
                         araPrint("a");
                         continue;
                     }
@@ -77,7 +87,7 @@ public class Room {
                     return direction;
                 case "Right":
                     d = Direction.values()[(direction.ordinal() + 3) % wallCount];
-                    if (!walls[d.ordinal()].canEnter()){
+                    if (!walls[d.ordinal()].canEnter(player, key)){
                         print("you walk tords the ");
                         araPrint("s");
                         continue;
@@ -86,7 +96,7 @@ public class Room {
                     return d;
                 case "Left":
                     d = Direction.values()[(direction.ordinal() + 1) % wallCount];
-                    if (!walls[d.ordinal()].canEnter()){
+                    if (!walls[d.ordinal()].canEnter(player, key)){
                         araPrint("a");
                         continue;
                     }
@@ -94,7 +104,7 @@ public class Room {
                     return d;
                 case "Back":
                     d = Direction.values()[(direction.ordinal() + 2) % wallCount];
-                    if (!walls[d.ordinal()].canEnter()){
+                    if (!walls[d.ordinal()].canEnter(player, key)){
                         araPrint("a");
                         continue;
                     }

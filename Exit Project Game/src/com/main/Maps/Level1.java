@@ -17,7 +17,7 @@ public class Level1 extends Level {
         rooms = new Room[][]{
             {new Room(/* Empty*/), new Room(door, wall, door, wall, "(0,1)"), new Room(door, wall, door, door, "(0,2)"), new EnemyRoom(door, wall, door, wall,"(0,3)", new HumanSpearMan(), new Level1Key())},
             {new Room(wall, wall, door, wall, "(1,0)"), new Room(door, door, door, wall, "(1,1)"), new Room(door, door, door, door, "(1,2)"), new Room(door, door, wall, door, "(1,3)")},
-            {new Room(/* Empty*/), new Room(lDoor, door,door, wall, "(2,1)"), new Room(wall, door, door, door, "(2,2)"), new Room(wall, door, wall, door, "(2,2)")},
+            {new Room(/* Empty*/), new Room(lDoor, door,door, wall, "(2,1)", new Level1Key()), new Room(wall, door, door, door, "(2,2)"), new Room(wall, door, wall, door, "(2,2)")},
             {new Room(/* Empty*/), new Room(wall, door, wall, wall, "(3,1)"), new Room(/* Empty*/), new Room(/* Empty*/)}
         };
 //        rooms = new Room[][]{
