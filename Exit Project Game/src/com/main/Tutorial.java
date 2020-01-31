@@ -119,12 +119,14 @@ public class Tutorial {
     private boolean nameCheck(Player player){
         if(player.name.toLowerCase().equals("sans")){
             player.inventory.add(new GasterBlaster());
+            player.sansStats();
         }
         else if(player.name.toLowerCase().equals("jarod")){
             return false;
         }
         else if(player.name.toLowerCase().equals("logan")){
             player.name = "Not very helpful";
+            player.loganStats();
         }
         else if(player.name.toLowerCase().equals("teemo")){
             player.name = "Cancer";

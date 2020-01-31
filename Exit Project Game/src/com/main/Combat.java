@@ -8,18 +8,17 @@ import com.main.Items.Swords.Swords;
 
 public class Combat {
 
-    private boolean tutorialLevel = true;
-
     protected void print(String... lines) {
         Helpers.print(lines);
     }
     protected void araPrint(String... lines) { Helpers.araPrint(lines);}
     protected Helpers h = new Helpers();
-    protected StartGame startGame = new StartGame();
 
     public void start(Enemies enemy, Player player) throws DiedExeption {
 
-        if(tutorialLevel == true){
+        boolean turn = true;
+
+        if(player.tutorialLevel == true){
             araPrint("Thea's are the basic steps of combat for idiots that have never plaid games before.");
             araPrint("If you have plaid games before good for you, but I don't care so your getting my long bit of dialog anyway.");
             araPrint("The first command for when you are in combat is ATTACK.");
@@ -34,31 +33,35 @@ public class Combat {
         }
 
         while (enemy.hp > 0 && player.hp > 0) {
-            print(player.name + ": HP= " + player.hp + " MP= " + player.mp);
+            while (turn == true) {
+                print(player.name + ": HP= " + player.hp + " MP= " + player.mp);
                 switch (h.menu("attack", "magic", "info")) {
                     case "info":
                         info(enemy);
 
-                        continue;
+                        break;
 
                     case "attack":
                         attack(enemy, player);
 
+                        turn = false;
                         break;
 
                     case "magic":
                         magic(enemy, player);
 
+                        turn = false;
                         break;
                 }
-
+            }
+            turn = true;
             enemyAttack(enemy, player);
             if(endFight(enemy, player) == false){
                 break;
             }
 
-            if(tutorialLevel == true){
-                tutorialLevel = false;
+            if(player.tutorialLevel == true){
+                player.tutorialLevel = false;
                 break;
             }
         }
@@ -80,18 +83,22 @@ public class Combat {
 
     private void magic(Enemies enemy, Player player){
         Magic m = player.inventory.menu(Magic.class);
+        while (true) {
+            if (m.effect == MagicEffect.ENEMY) {
 
-        if (m.effect == MagicEffect.ENEMY){
-            enemy.hp = enemy.hp - m.damage;
-
-            print("You use " + m.name + " it does " + m.damage + " magic damage.");
-
-            hpIndicator(enemy);
+                player.mp = player.mp - m.mpCost;
+                if (player.mp <= 0) {
+                    player.mp = 0;
+                }
+                else {
+                    enemy.hp = enemy.hp - m.damage;
+                    print("You use " + m.name + " it does " + m.damage + " magic damage.");
+                }
+                hpIndicator(enemy);
+            } else if (m.effect == MagicEffect.SELF) {
+                player.hp = player.hp + m.damage;
+            }
         }
-        else if(m.effect == MagicEffect.SELF){
-            player.hp = player.hp + m.damage;
-        }
-
     }
 
     private void info(Enemies enemy){
@@ -99,23 +106,29 @@ public class Combat {
 
     }
 
-    private void hpIndicator(Enemies enemy){
-        if (enemy.hp > 80) {
+    private void hpIndicator(Enemies enemy) {
+
+        if (enemy.name.equals("Ara")) {
+            if (enemy.hp > 0) {
+                print("Ara doesn't look hurt at all.");
+            } else if (enemy.hp <= 0) {
+                print("You killed Ara.");
+                print("Your vision blurs and you loss consciousness.");
+            }
+        } else if (enemy.hp > 80) {
             print(enemy.name + " looks like they barely hurt at all.");
 
-        }
-        else if (enemy.hp <= 80 && enemy.hp > 40){
+        } else if (enemy.hp <= 80 && enemy.hp > 40) {
             print(enemy.name + " looks like they are starting to be hurt.");
 
-        }
-        else if (enemy.hp <= 40 && enemy.hp > 10){
+        } else if (enemy.hp <= 40 && enemy.hp > 10) {
             print(enemy.name + " looks like they are hurt really badly.");
 
-        }
-        else if (enemy.hp <= 10 && enemy.hp > 0){
+        } else if (enemy.hp <= 10 && enemy.hp > 0) {
             print(enemy.name + " looks like they are about to die.");
 
         }
+
     }
 
     private void enemyAttack(Enemies enemy, Player player){
@@ -147,9 +160,11 @@ public class Combat {
             throw new DiedExeption("Well you suck.");
         }
         else if(enemy.hp <= 0){
-            print(enemy.name + " falls down and slowly starts dieing");
-            print("You take you sword and finish him of");
-
+            if(enemy.name.equals("Ara")){}
+            else {
+                print(enemy.name + " falls down and slowly starts dieing");
+                print("You take you sword and finish him of");
+            }
             return false;
         }
         return true;

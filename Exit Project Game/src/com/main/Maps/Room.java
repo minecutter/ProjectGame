@@ -3,6 +3,7 @@ package com.main.Maps;
 import com.main.DiedExeption;
 import com.main.Entitys.Player;
 import com.main.Helpers;
+import com.main.Inventory;
 
 import javax.naming.directory.SearchControls;
 import java.lang.reflect.Array;
@@ -42,7 +43,7 @@ public class Room {
     public Direction playRoom(Direction direction, Player player) throws DiedExeption {
         startRoom(player);
         Direction travelDirection = menu(direction);
-        endRoom();
+        endRoom(player.inventory);
 
         return travelDirection;
     }
@@ -52,13 +53,13 @@ public class Room {
 
     }
 
-    public void endRoom(){
+    public void endRoom(Inventory inventory){
 
 
     }
 
     public Direction menu(Direction direction) {
-        print(Name);
+//        print(Name); //For testing purposes
         print("In front of you is " + walls[direction.ordinal()].toString());
         print("To the right there is " + walls[(direction.ordinal() + 3) % wallCount].toString());
         print("To the left there is " + walls[(direction.ordinal() + 1) % wallCount].toString());

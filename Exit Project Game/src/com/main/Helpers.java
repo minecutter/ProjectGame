@@ -29,8 +29,8 @@ public final class Helpers {
 
     private static final Scanner scan = new Scanner(System.in);
 
-//      private static final int textWait = 100;  //switch back to this
-      private static final int textWait = 0;   //test #
+      private static final int textWait = 100;  //switch back to this
+//      private static final int textWait = 0;   //test #
 
     public static void print(String... lines) {
         for (String line: lines) {
@@ -133,4 +133,5 @@ public final class Helpers {
             print("You have found");
         }
     }
+
 }

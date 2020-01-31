@@ -4,6 +4,7 @@ import com.main.DiedExeption;
 import com.main.Entitys.HumanSpearMan;
 import com.main.Entitys.Player;
 import com.main.Helpers;
+import com.main.Items.Keys.Level1Key;
 
 import java.awt.*;
 
@@ -14,10 +15,10 @@ public class Level1 extends Level {
     public Level1(){
 
         rooms = new Room[][]{
-            {new Room(/* Empty                           */), new Room(door, wall, door, wall, "(0,1)"), new Room(door, wall, door, door, "(0,2)"), new EnemyRoom(door, wall, door, wall, new HumanSpearMan())},
+            {new Room(/* Empty*/), new Room(door, wall, door, wall, "(0,1)"), new Room(door, wall, door, door, "(0,2)"), new EnemyRoom(door, wall, door, wall,"(0,3)", new HumanSpearMan(), new Level1Key())},
             {new Room(wall, wall, door, wall, "(1,0)"), new Room(door, door, door, wall, "(1,1)"), new Room(door, door, door, door, "(1,2)"), new Room(door, door, wall, door, "(1,3)")},
-            {new Room(/* Empty                           */), new Room(lDoor, door,door, wall, "(2,1)"), new Room(wall, door, door, door, "(2,2)"), new Room(wall, door, wall, door, "(2,2)")},
-            {new Room(/* Empty                           */), new Room(wall, door, wall, wall, "(3,1)"), new Room(/* Empty                           */), new Room(/* Empty                           */)}
+            {new Room(/* Empty*/), new Room(lDoor, door,door, wall, "(2,1)"), new Room(wall, door, door, door, "(2,2)"), new Room(wall, door, wall, door, "(2,2)")},
+            {new Room(/* Empty*/), new Room(wall, door, wall, wall, "(3,1)"), new Room(/* Empty*/), new Room(/* Empty*/)}
         };
 //        rooms = new Room[][]{
 //                {new Room(new Door(), new Wall(), new Door(), new Wall(), "top left"), new Room(new Wall(), new Door(), new Door(), new Wall(), "top right") },
@@ -58,7 +59,7 @@ public class Level1 extends Level {
         print("She tells you that the king is at the top flor of the demons home and that you are currently on the bottom.");
         print("She shoes you the later and wishes you luck as you go higher into the cave.");
 
-        player.level2Stats();
+        player.nameCheck();
         new Level2().playLevel(player);
 
     }

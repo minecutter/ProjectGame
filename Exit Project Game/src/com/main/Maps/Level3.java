@@ -12,7 +12,7 @@ public class Level3 extends Level {
 
 
         rooms = new Room[][]{
-                {new EnemyRoom(wall, wall, door, wall, new HumanRoalGard()), new EnemyRoom(wall, wall, door, door, new HumanRoalGard()), new EnemyRoom(wall, wall, door, door, new HumanRoalGard()), new EnemyRoom(wall, wall, door, door, new KingWarstone()), new Room(wall, wall, wall, door, "lest room")}
+                {new EnemyRoom(wall, wall, door, wall,"(0,0)", new HumanRoalGard()), new EnemyRoom(wall, wall, door, door,"(0,1)", new HumanRoalGard()), new EnemyRoom(wall, wall, door, door,"(0,2)", new HumanRoalGard()), new EnemyRoom(wall, wall, door, door,"(0,3)", new KingWarstone()), new Room(wall, wall, wall, door, "(0,4)")}
         };
 
         startPoint = new Point(0,0);
@@ -38,6 +38,6 @@ public class Level3 extends Level {
 
         araPrint("That Mother F***** didn't even add credits.");
         araPrint("This game already sucks but why did not even bother with the F****** credits.");
-        print("You fade out of existence as you here Ara ranting about someone.");
+        print("You fade out of existence as you here Ara ranting about someone you don't know.");
     }
 }

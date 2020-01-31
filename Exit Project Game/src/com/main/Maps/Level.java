@@ -23,7 +23,7 @@ public class Level {
 
     public void playLevel(Player player) throws DiedExeption {
         currentPoint = startPoint;
-        startLevel();
+        startLevel(player);
 
         while (true) {
             currentDirection = rooms[currentPoint.x][currentPoint.y].playRoom(currentDirection, player);
@@ -56,7 +56,7 @@ public class Level {
     public void endLevel(Player player) throws DiedExeption {
 
     }
-    public void startLevel(){
+    public void startLevel(Player player){
 
     }
 

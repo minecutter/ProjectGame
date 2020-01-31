@@ -16,5 +16,6 @@ public class Ara extends Enemies {
         damageRangMin = 5;
         damageRangMax = 10;
         hitChance = 100;
+        magicReasist = 1;
     }
 }
