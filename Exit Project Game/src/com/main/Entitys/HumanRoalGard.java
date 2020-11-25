@@ -1,6 +1,6 @@
 package com.main.Entitys;
 
-public class HumanRoalGard extends Enemies {
+public class HumanRoalGard extends NPC {
     public HumanRoalGard() {
         name = "Warstone's Royal Gard";
         armor = 2/10;

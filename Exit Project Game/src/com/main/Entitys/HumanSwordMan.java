@@ -1,6 +1,6 @@
 package com.main.Entitys;
 
-public class HumanSwordMan extends Enemies {
+public class HumanSwordMan extends NPC {
     public HumanSwordMan() {
         name = "Human Sword Man";
         armor = 1/10;

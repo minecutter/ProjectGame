@@ -3,7 +3,7 @@ package com.main.Maps;
 import com.main.DiedExeption;
 import com.main.Entitys.HumanSpearMan;
 import com.main.Entitys.HumanSwordMan;
-import com.main.Entitys.Player;
+import com.main.Entitys.PC;
 
 import java.awt.*;
 
@@ -22,15 +22,15 @@ public class Level2 extends Level {
         //                                                                                                                                      POSX, NEGX, POSY, NEGY
     }
 
-    public void startLevel(Player player){
+    public void startLevel(PC PC){
         print("You go up the ladder and into the next room.");
     }
 
-    public void endLevel(Player player) throws DiedExeption {
+    public void endLevel(PC PC) throws DiedExeption {
         print("You slowly walk up a flight of stairs to the final floor.");
 
-        player.nameCheck();
-        new Level3().playLevel(player);
+        PC.nameCheck();
+        new Level3().playLevel(PC);
 
     }
 }

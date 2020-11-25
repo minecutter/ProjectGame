@@ -1,6 +1,6 @@
 package com.main.Maps;
 
-import com.main.Entitys.Player;
+import com.main.Entitys.PC;
 import com.main.Items.Keys.Key;
 
 public class LockedDoor extends Wall {
@@ -10,9 +10,9 @@ public class LockedDoor extends Wall {
 
         return "locked door";
     }
-    public boolean canEnter(Player player, Key key){
+    public boolean canEnter(PC PC, Key key){
         //TODO
-        if(player.inventory.getItemsOfType(Key.class).contains(key)){
+        if(PC.inventory.getItemsOfType(Key.class).contains(key)){
             return true;
         }
         else {

@@ -1,6 +1,6 @@
 package com.main.Maps;
 
-import com.main.Entitys.Player;
+import com.main.Entitys.PC;
 import com.main.Items.Keys.Key;
 
 public class Door extends Wall {
@@ -9,7 +9,7 @@ public class Door extends Wall {
         return "door";
     }
 
-    public boolean canEnter(Player player, Key key){
+    public boolean canEnter(PC PC, Key key){
         return false;
     }
 }

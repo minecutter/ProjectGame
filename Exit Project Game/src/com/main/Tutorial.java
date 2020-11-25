@@ -1,6 +1,6 @@
 package com.main;
 
-import com.main.Entitys.Player;
+import com.main.Entitys.PC;
 import com.main.Entitys.*;
 import com.main.Items.Magic.FireShot;
 import com.main.Items.Swords.BasicSword;
@@ -8,8 +8,6 @@ import com.main.Items.Swords.GasterBlaster;
 import com.main.Items.Swords.GoodSword;
 import com.main.Maps.Level1;
 import com.main.Maps.TutorialMap;
-
-import java.util.*;
 
 
 public class Tutorial {
@@ -27,7 +25,7 @@ public class Tutorial {
         h.araPrint(lines);
     }
 
-    public boolean start(Player player) throws DiedExeption{
+    public boolean start(PC PC) throws DiedExeption{
 
 //      how to color text
 //      System.out.println("\033[31mRed\033[32m, Green\033[33m, Yellow\033[34m, Blue\033[0m");
@@ -48,9 +46,9 @@ public class Tutorial {
         araPrint("Lets start with your name.");
         araPrint("So just type it.");
 
-        player.name = h.getInput();
+        PC.name = h.getInput();
 
-        if (nameCheck(player) == false){
+        if (nameCheck(PC) == false){
             return false;
         }
 
@@ -70,12 +68,12 @@ public class Tutorial {
                 araPrint("Is this the name your good with.");
             }
 
-            araPrint(player.name);
+            araPrint(PC.name);
 
             input = h.menu("yes", "no");
             if (input.equals("yes")) {
                 araPrint("Ok then");
-                print(player.name);
+                print(PC.name);
                 break;
             } else if (input.equals("no")) {
                 //araPrint(Helpers.randomString(snarkyRemarks));  //gives random string
@@ -88,20 +86,20 @@ public class Tutorial {
                 }
 
 //                i %= snarkyRemarks.length; //makes the array go one after the other in a loop
-                player.name = h.getInput();
+                PC.name = h.getInput();
             }
         }
 
         araPrint("Ok now that we have that out of the way lets move on to fighting.");
 
         //adds Sword to inventory
-        player.inventory.add(new BasicSword());
-        player.inventory.add(new FireShot());
+        PC.inventory.add(new BasicSword());
+        PC.inventory.add(new FireShot());
 
-        combat.start(ara, player);
+        combat.start(ara, PC);
 
-        player.inventory.add(new GoodSword());
-        player.inventory.remove(new BasicSword());
+        PC.inventory.add(new GoodSword());
+        PC.inventory.remove(new BasicSword());
 
         araPrint("Now that you have learned how to fight you now need to learn how to move around.");
 
@@ -112,24 +110,24 @@ public class Tutorial {
         print("She then proceeds to push you though the portal with much more strength then a person of that size could actually use.");
         araPrint("Good now that you are though I will send you to the humans now.");
 
-        new Level1().playLevel(player);
+        new Level1().playLevel(PC);
         return true;
     }
 
-    private boolean nameCheck(Player player){
-        if(player.name.toLowerCase().equals("sans")){
-            player.inventory.add(new GasterBlaster());
-            player.sansStats();
+    private boolean nameCheck(PC PC){
+        if(PC.name.toLowerCase().equals("sans")){
+            PC.inventory.add(new GasterBlaster());
+            PC.sansStats();
         }
-        else if(player.name.toLowerCase().equals("jarod")){
+        else if(PC.name.toLowerCase().equals("jarod")){
             return false;
         }
-        else if(player.name.toLowerCase().equals("logan")){
-            player.name = "Not very helpful";
-            player.loganStats();
+        else if(PC.name.toLowerCase().equals("logan")){
+            PC.name = "Not very helpful";
+            PC.loganStats();
         }
-        else if(player.name.toLowerCase().equals("teemo")){
-            player.name = "Cancer";
+        else if(PC.name.toLowerCase().equals("teemo")){
+            PC.name = "Cancer";
         }
         return true;
     }

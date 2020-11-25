@@ -1,14 +1,13 @@
 package com.main;
 
-import com.main.Entitys.Player;
-import com.main.Maps.Level1;
+import com.main.Entitys.PC;
 
 public class StartGame {
 
     public void startGame(){
         Tutorial tutorial = new Tutorial();
         Helpers h = new Helpers();
-        Player p = new Player();
+        PC p = new PC();
 
         while (true) {
             try {

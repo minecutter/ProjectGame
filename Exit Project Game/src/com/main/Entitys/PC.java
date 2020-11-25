@@ -4,7 +4,7 @@ import com.main.Entity;
 import com.main.Inventory;
 
 
-public class Player extends Entity {
+public class PC extends Entity {
 
     public Inventory inventory = new Inventory();
 
@@ -29,7 +29,7 @@ public class Player extends Entity {
     }
 
 
-    public Player(){
+    public PC(){
         hp = 100;
         mp = 100;
         gold = 10;

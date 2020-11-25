@@ -1,6 +1,6 @@
 package com.main.Entitys;
 
-public class KingWarstone extends Enemies {
+public class KingWarstone extends NPC {
     public KingWarstone() {
         name = "King Warstone";
         armor = 4 / 10;

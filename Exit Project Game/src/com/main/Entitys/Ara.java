@@ -1,9 +1,6 @@
 package com.main.Entitys;
 
-import com.main.Entity;
-import com.main.Helpers;
-
-public class Ara extends Enemies {
+public class Ara extends NPC {
 
     public Ara() {
         name = "Ara";
@@ -16,6 +13,6 @@ public class Ara extends Enemies {
         damageRangMin = 5;
         damageRangMax = 10;
         hitChance = 100;
-        magicReasist = 1;
+        magicResistance = 1;
     }
 }

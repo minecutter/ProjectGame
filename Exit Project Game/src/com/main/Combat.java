@@ -1,7 +1,7 @@
 package com.main;
 
 import com.main.Entitys.Enemies;
-import com.main.Entitys.Player;
+import com.main.Entitys.PC;
 import com.main.Items.Magic.Magic;
 import com.main.Items.Magic.MagicEffect;
 import com.main.Items.Swords.Swords;
@@ -14,13 +14,13 @@ public class Combat {
     protected void araPrint(String... lines) { Helpers.araPrint(lines);}
     protected Helpers h = new Helpers();
 
-    public void start(Enemies enemy, Player player) throws DiedExeption {
+    public void start(Enemies enemy, PC PC) throws DiedExeption {
 
         boolean turn = true;
 
-        if(player.tutorialLevel == true){
+        if(PC.tutorialLevel == true){
             araPrint("Thea's are the basic steps of combat for idiots that have never plaid games before.");
-            araPrint("If you have plaid games before good for you, but I don't care so your getting my long bit of dialog anyway.");
+            araPrint("If you have played games before good for you, but I don't care so your getting my long bit of dialog anyway.");
             araPrint("The first command for when you are in combat is ATTACK.");
 
             Helpers.myWait(2000);
@@ -32,9 +32,9 @@ public class Combat {
 
         }
 
-        while (enemy.hp > 0 && player.hp > 0) {
+        while (enemy.hp > 0 && PC.hp > 0) {
             while (turn == true) {
-                print(player.name + ": HP= " + player.hp + " MP= " + player.mp);
+                print(PC.name + ": HP= " + PC.hp + " MP= " + PC.mp);
                 switch (h.menu("attack", "magic", "info")) {
                     case "info":
                         info(enemy);
@@ -42,26 +42,26 @@ public class Combat {
                         break;
 
                     case "attack":
-                        attack(enemy, player);
+                        attack(enemy, PC);
 
                         turn = false;
                         break;
 
                     case "magic":
-                        magic(enemy, player);
+                        magic(enemy, PC);
 
                         turn = false;
                         break;
                 }
             }
             turn = true;
-            enemyAttack(enemy, player);
-            if(endFight(enemy, player) == false){
+            enemyAttack(enemy, PC);
+            if(endFight(enemy, PC) == false){
                 break;
             }
 
-            if(player.tutorialLevel == true){
-                player.tutorialLevel = false;
+            if(PC.tutorialLevel == true){
+                PC.tutorialLevel = false;
                 break;
             }
         }
@@ -69,8 +69,8 @@ public class Combat {
 
     }
 
-    private void attack(Enemies enemy, Player player){
-        Swords s = player.inventory.menu(Swords.class);
+    private void attack(Enemies enemy, PC PC){
+        Swords s = PC.inventory.menu(Swords.class);
 
         float damage = s.damage * (1f - enemy.armor);
 
@@ -81,14 +81,14 @@ public class Combat {
         hpIndicator(enemy);
     }
 
-    private void magic(Enemies enemy, Player player){
-        Magic m = player.inventory.menu(Magic.class);
+    private void magic(Enemies enemy, PC PC){
+        Magic m = PC.inventory.menu(Magic.class);
         while (true) {
             if (m.effect == MagicEffect.ENEMY) {
 
-                player.mp = player.mp - m.mpCost;
-                if (player.mp <= 0) {
-                    player.mp = 0;
+                PC.mp = PC.mp - m.mpCost;
+                if (PC.mp <= 0) {
+                    PC.mp = 0;
                 }
                 else {
                     enemy.hp = enemy.hp - m.damage;
@@ -96,7 +96,7 @@ public class Combat {
                 }
                 hpIndicator(enemy);
             } else if (m.effect == MagicEffect.SELF) {
-                player.hp = player.hp + m.damage;
+                PC.hp = PC.hp + m.damage;
             }
         }
     }
@@ -131,13 +131,13 @@ public class Combat {
 
     }
 
-    private void enemyAttack(Enemies enemy, Player player){
+    private void enemyAttack(Enemies enemy, PC PC){
         print(enemy.name + " goes in for an attack.");
 
         if(h.randomNumber(0, 100) <= enemy.hitChance){
             float damage = h.randomNumber(enemy.damageRangMin, enemy.damageRangMax);
 
-            player.hp = player.hp - damage;
+            PC.hp = PC.hp - damage;
 
             print(enemy.name + " hits dealing " + damage + " damage.");
 
@@ -149,8 +149,8 @@ public class Combat {
 
     }
 
-    private boolean endFight(Entity enemy, Player player) throws DiedExeption {
-        if(player.hp <= 0){
+    private boolean endFight(Entity enemy, PC PC) throws DiedExeption {
+        if(PC.hp <= 0){
             araPrint("You are really pitiful you know.");
 
             print("You here Ara say right before you die.");
